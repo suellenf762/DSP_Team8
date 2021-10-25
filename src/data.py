@@ -4,6 +4,8 @@ from dataclasses import dataclass
 import pandas as pd
 
 
+st.title("Data Explorer Tool")
+
 @dataclass
 class Dataset:
   name: str
