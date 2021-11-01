@@ -4,13 +4,15 @@ from dataclasses import dataclass
 import pandas as pd
 
 
-st.title("Data Explorer Tool")
+
 
 @dataclass
-class Dataset:
-  name: str
-  df: pd.DataFrame
-  
+class Dataset():
+  name: str =None
+  df: pd.DataFrame =None
+
+
+
   def get_name(self):
     """
     Return filename of loaded dataset
@@ -21,13 +23,13 @@ class Dataset:
     """
       Return number of rows of loaded dataset
     """
-    return None
+    return str(self.shape[0])
 
   def get_n_cols(self):
     """
       Return number of columns of loaded dataset
     """
-    return None
+    return str(df.shape[1])
 
   def get_cols_list(self):
     """
@@ -39,19 +41,19 @@ class Dataset:
     """
       Return dictionary with column name as keys and data type as values
     """
-    return None
+    return pd.DataFrame(self.dtypes, columns=['Type'])
 
   def get_n_duplicates(self):
     """
       Return number of duplicated rows of loaded dataset
     """
-    return None
+    return self[self.duplicated()]
 
   def get_n_missing(self):
     """
       Return number of rows with missing values of loaded dataset
     """
-    return None
+    return str((self.isna().sum(axis=1) > 0).sum())
 
   def get_head(self, n=5):
     """
